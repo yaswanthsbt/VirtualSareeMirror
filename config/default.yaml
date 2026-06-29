@@ -1,0 +1,107 @@
+# Virtual Saree Mirror - Default Configuration
+
+app:
+  name: "Virtual Saree Mirror"
+  version: "1.0.0"
+  debug: false
+  log_level: "INFO"
+  
+camera:
+  device_id: 0
+  width: 1920
+  height: 1080
+  fps: 30
+  flip_horizontal: true
+  flip_vertical: false
+  brightness: 1.0
+  contrast: 1.0
+  
+pose:
+  model: "mediapipe_pose"
+  confidence_threshold: 0.5
+  smoothing_factor: 0.3
+  max_hands: 2
+  
+segmentation:
+  model: "mediapipe_selfie"
+  confidence_threshold: 0.5
+  model_selection: 1  # 0: light, 1: full-body
+  
+body_mesh:
+  enable: true
+  estimation_model: "smpl"
+  resolution: 512
+  
+saree:
+  loader:
+    supported_formats: ["png", "jpg", "jpeg"]
+    max_resolution: [4096, 4096]
+    auto_detect_border: true
+    auto_detect_pallu: true
+  
+  draping:
+    simulation_steps: 5
+    damping: 0.99
+    stiffness: 0.1
+    gravity: 0.01
+    wind: 0.0
+    
+  fabrics:
+    silk:
+      stiffness: 0.08
+      damping: 0.95
+      wind_resistance: 0.3
+    cotton:
+      stiffness: 0.12
+      damping: 0.93
+      wind_resistance: 0.4
+    georgette:
+      stiffness: 0.10
+      damping: 0.94
+      wind_resistance: 0.35
+    chiffon:
+      stiffness: 0.06
+      damping: 0.96
+      wind_resistance: 0.25
+    linen:
+      stiffness: 0.14
+      damping: 0.92
+      wind_resistance: 0.45
+
+tracking:
+  max_tracking_frames: 30
+  interpolation_method: "kalman"
+  
+renderer:
+  target_fps: 60
+  enable_vsync: true
+  antialiasing: true
+  shadow_quality: "high"
+  
+performance:
+  enable_gpu: true
+  gpu_device: 0
+  batch_size: 1
+  max_workers: 4
+  memory_optimization: true
+  
+ui:
+  theme: "dark"
+  window_width: 1920
+  window_height: 1080
+  fullscreen: false
+  show_fps: true
+  show_landmarks: false
+  
+database:
+  path: "database/saree_catalog.db"
+  backup_enabled: true
+  backup_interval: 3600  # seconds
+  
+paths:
+  models: "models/"
+  sarees: "sarees/"
+  logs: "logs/"
+  captures: "captures/"
+  temp: "temp/"
+  assets: "assets/"
